@@ -1,0 +1,130 @@
+<p>
+  proyectos works!
+</p>
+<div class="container">
+
+    
+
+    <div class="col-md-8 col-md-offset-2">
+
+        <h1>GESTION PROYECTOS</h1>
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <label for="">Nombre del Proyecto</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Tipo</label>
+                <select name="" id="" class="form-control">
+                    <option value="">
+                        <li>
+                            Seleccionar Tipo...
+                        </li>
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Modalidad</label>
+                <select name="" id="" class="form-control">
+                    <option value="">Seleccionar modalidad...</option>
+                </select>
+            </div>
+
+        </div>
+        
+        
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="">Responsable</label>
+                <input type="text" class="form-control">
+            </div>
+            
+            <div class="col-md-4">
+                <label for="">Asesor</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <label for="">Participantes</label>
+                
+                <select name="" id="" class="form-control select2" multiple >
+                    <option value="">Persona 1</option>
+                    <option value="">Persona 2</option>
+                    <option value="">Persona 3</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <label for="">Fecha creaci&oacute;n</label>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Fecha Inicial</label>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Fecha final</label>
+                <input type="date" class="form-control">
+            </div>
+
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <label for="">Calificaci&oacute;n</label>
+                <input type="date" class="form-control" disabled>
+            </div>
+
+            <div class="col-md-4">
+                <label for="">Estado</label>
+                <select name="" id="" class="form-control">
+                    <option value="">Seleccionar ...</option>
+                </select>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+
+            <div class="col-md-12">
+                <label for="">Objetivo general</label>
+                <textarea class="form-control"></textarea>
+            </div>
+
+        </div>
+
+        <br>
+        <div class="row">
+
+            <div class="col-md-12">
+                <label for="">Objetivos especificos</label>
+                <textarea class="form-control"></textarea>
+            </div>
+
+        </div>
+
+        <br>
+        <div class="row">
+
+            <div class="col-md-12">
+                <label for="">Reconocimientos</label>
+                <textarea class="form-control"></textarea>
+            </div>
+
+        </div>
+
+        <br>
+        <button class="btn btn-primary">Registrar</button>
+    </div>
+</div>
