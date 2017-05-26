@@ -36,7 +36,7 @@ export class ProyectoService {
   getProyectos3(): Observable<Proyecto[]>{
       return this.http
       .get(`${this.proyectosUrl}/findall`, {headers: this.headers})
-      .map(res => res.json().data as Proyecto[])
+      .map((res: Response) => <Proyecto[]>res.json())
       .catch(this.handleError);
   }
 
