@@ -1,8 +1,8 @@
-		<div role="content">
+		<div role="content" style="margin:14px 14px 0px 14px">
 			<div class="widget-body no-padding">
 				<div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
 					<div class="dt-toolbar">
-						<div class="col-xs-12 col-sm-6">
+						<div class="col-xs-12 col-sm-4">
 							<div id="example_filter" class="dataTables_filter">
 								<label>
 									<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -10,7 +10,19 @@
 								</label>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-6">
+						<div class="col-xs-12 col-sm-4">
+							<div id="new_project" class="dataTables_filter">
+								<a class="btn btn-default" routerLink="/formproyecto" title="Nuevo Proyecto">Nuevo</a>
+								<!--
+								<label>							
+									<button type="button" class="btn btn-default" onclick="window.history.back();">
+										Nuevo Proyecto
+									</button>
+								</label>
+								-->
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4">
 							<div class="dataTables_length" id="example_length">
 								<label>
 									<select name="example_length" aria-controls="example" class="form-control">
@@ -28,7 +40,17 @@
 				
 					<table id="example" class="display projects-table table table-striped table-bordered table-hover dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 						<thead>
-							<tr role="row"><th class="details-control sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 18px;"></th><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Projects: activate to sort column descending" style="width: 162px;" aria-sort="ascending">Projects</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" EST: activate to sort column ascending" style="width: 63px;"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> EST</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Contacts: activate to sort column ascending" style="width: 53px;">Contacts</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 50px;">Status</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Target/  Actual: activate to sort column ascending" style="width: 68px;"><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Starts: activate to sort column ascending" style="width: 36px;"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Starts</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Ends: activate to sort column ascending" style="width: 34px;"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Ends</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Tracker: activate to sort column ascending" style="width: 48px;">Tracker</th></tr>
+							<tr role="row">
+								<th class="details-control sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 18px;"></th>
+								<th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Proyecto: presione para ordenar" style="width: 162px;" aria-sort="ascending">Proyecto</th>
+								<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Avance: presione para ordenar" style="width: 63px;"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Avance</th>
+								<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Participantes: presione para ordenar" style="width: 53px;">Partic.</th>
+								<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Estado: presione para ordenar" style="width: 50px;">Estado</th>
+								<!--<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Target/  Actual: activate to sort column ascending" style="width: 68px;"><i class="fa fa-circle txt-color-darken font-xs"></i> Target/ <i class="fa fa-circle text-danger font-xs"></i> Actual</th>-->
+								<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Inicio: presione para ordenar" style="width: 36px;"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Inicio</th>
+								<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label=" Fin Planeado: presione para ordenar" style="width: 34px;"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Fin Planeado</th>
+								<!--<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Tracker: activate to sort column ascending" style="width: 48px;">Tracker</th>-->
+							</tr>
 						</thead>
 						<tbody *ngFor="let proyecto of proyectos">
 							<tr role="row" class="odd">
@@ -37,7 +59,7 @@
 										<td class=" details-control" ></td>
 										<td class="sorting_1">{{proyecto.nombreproyecto}}<br>
 											<small class="text-muted">
-												<i>Budget: 5,000<i></i></i>
+												<i>Calificación: {{proyecto.calificacion}}<i></i></i>
 											</small>
 										</td>
 										<td>
@@ -48,20 +70,23 @@
 										<td>
 											<div class="project-members">
 												<a href="javascript:void(0)"></a>
-												<a href="javascript:void(0)"><img src="img/avatars/male.png" class="away"></a>
-												<a href="javascript:void(0)"><img src="img/avatars/3.png" class="away"></a>
+												<a href="javascript:void(0)"><img src="assets/img/avatars/{{proyecto.participante}}" class="away"></a>
+												<a href="javascript:void(0)"><img src="assets/img/avatars/male.png" class="away"></a>
 											</div>
 										</td>
 										<td>
-											<span class="label label-success">ACTIVE</span>
+											<span class="label label-success">{{proyecto.estados}}</span>
 										</td>
+<!--										
 										<td>
 											<span style="margin-top:5px" class="sparkline display-inline" data-sparkline-type="compositebar" data-sparkline-height="18px" data-sparkline-barcolor="#aafaaf" data-sparkline-line-width="2.5" data-sparkline-line-val="[6, 20, 13, 15, 5, 3, 11, 16, 19, 14, 9, 12, 7, 18, 10, 8, 1, 17, 4]" data-sparkline-bar-val="[18, 15, 1, 19, 4, 9, 14, 5, 7, 6, 17, 13, 16, 20, 3, 11, 12, 2, 8]">
 												<canvas width="75" height="18" style="display: inline-block; width: 75px; height: 18px; vertical-align: top;"></canvas>
 											</span>
 										</td>
+-->
 										<td>{{proyecto.fechainicial}}</td>
 										<td><strong>08-01-2015</strong></td>
+<!--
 										<td>
 											<span class="onoffswitch"><input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="st6">
 												<label class="onoffswitch-label" for="st6">
@@ -70,9 +95,10 @@
 												</label>
 											</span>
 										</td>
+-->
 									</tr>
 
-									<tr>
+									<tr class="detalleproyecto">
 										<td colspan="9">
 											<table cellpadding="5" cellspacing="0" border="0" class="table table-hover table-condensed" id="detalle1" style="display: block">
 												<!--<tbody>-->
@@ -101,7 +127,7 @@
 													<tr>
 														<td>Action:</td>
 														<td>
-															<button (click)="crearProyecto()">Crear Proyecto</button>
+															<button class="btn btn-xs">Open case</button>
 															<button class="btn btn-xs btn-danger pull-right" style="margin-left:5px">Delete Record</button>
 															<button class="btn btn-xs btn-success pull-right">Save Changes</button>
 														</td>

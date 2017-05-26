@@ -9,7 +9,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ProyectoService {
-    private proyectosUrl = 'localhost:8080/proyecto';
+    private proyectosUrl = 'http://localhost:8080/proyecto';
+    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http : Http){
     }
@@ -20,9 +21,25 @@ export class ProyectoService {
       .catch(this.handleError);
     }
 
+
     getProyectos2(): Promise<Proyecto[]>{
       return Promise.resolve(PROYECTOS)
     }
+
+    getProyectos4(): Observable<Proyecto[]>{
+      return this.http
+      .get(`${this.proyectosUrl}/findall`, {headers: this.headers})
+      .map(res => res.json().data )
+      .catch(this.handleError);
+  }
+
+  getProyectos3(): Observable<Proyecto[]>{
+      return this.http
+      .get(`${this.proyectosUrl}/findall`, {headers: this.headers})
+      .map(res => res.json().data as Proyecto[])
+      .catch(this.handleError);
+  }
+
     
     private handleError(error: any): Promise<any> {
       console.error('An error occurred', error); // for demo purposes only
@@ -35,7 +52,6 @@ export class ProyectoService {
       then(response => response.json()
       .data as Proyecto).catch(this.handleError);
     }
-    private headers = new Headers({'Content-Type': 'application/json'});
 
     create(proyecto: Proyecto): Promise<Proyecto> {
       return this.http
@@ -50,7 +66,7 @@ export class ProyectoService {
 
 const PROYECTOS: Proyecto[]=[
   {"idn":7,
-  "nombreproyecto":"Pruebas",
+  "nombreproyecto":"Pruebas2",
   "objetivogeneral":"Pruebas al crud",
   "fechainicial":"2017-04-20",
   "adtusuario":"admin",

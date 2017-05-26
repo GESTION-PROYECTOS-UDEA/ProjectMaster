@@ -18,8 +18,8 @@ export class ProyectosComponent implements OnInit {
   constructor(private proyectoService: ProyectoService, private router: Router) { }
 
     getProyectos() {
-       this.proyectoService.getProyectos2().then(proyectos => this.proyectos = proyectos,
-       error => this.mensajeError = <any>error);
+       this.proyectoService.getProyectos3().subscribe(proyectos => (console.log(proyectos), JSON.stringify(proyectos),
+       error => this.mensajeError = <any>error));
     }
 
     ngOnInit(): void {
@@ -31,9 +31,7 @@ export class ProyectosComponent implements OnInit {
   }
   */
 
-  crearProyecto(): void {
-    this.router.navigate([`/formproyecto`]);
-  }
+ 
   
   
 }
