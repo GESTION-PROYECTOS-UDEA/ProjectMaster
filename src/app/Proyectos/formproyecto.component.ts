@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router }   from '@angular/router';
+import { Router } from '@angular/router';
 import { Proyecto } from './proyecto';
 import { ProyectoService } from './proyecto.service';
 
@@ -12,12 +12,27 @@ import { ProyectoService } from './proyecto.service';
 })
 export class FormproyectoComponent {
 
-  constructor(private proyectoService: ProyectoService, private router: Router) { }
+  constructor(private proyectoService: ProyectoService, private router: Router) { 
+    
+  }
+  proyecto: Proyecto = new Proyecto;
 
+  mensajeError: string;
   submitted = false;
-  onSubmit() { this.submitted = true; }
+  active = true;
 
-   /**save(proyecto: Proyecto): void{
-    this.proyectoService.create();
-  }*/
+  onSubmit() {
+
+    this.submitted = true;
+    this.proyectoService.create(this.proyecto).subscribe(proyecto => (console.log(proyecto),
+      this.proyecto = proyecto,
+      error => this.mensajeError = <any>error));;
+    this.newForm();
+  }
+
+  newForm() {
+    this.proyecto = new Proyecto();
+    this.active = false;
+    setTimeout(() => { this.active = true; });
+  }
 }

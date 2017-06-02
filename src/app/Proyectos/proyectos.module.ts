@@ -6,12 +6,14 @@ import { ProyectosComponent } from './proyectos.component';
 import { ProyectoService }         from './proyecto.service';
 import { ProyectoComponent } from './proyecto.component';
 import { FormproyectoComponent } from './formproyecto.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ProyectosRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
   ],
   declarations: [ProyectosComponent, ProyectoComponent, FormproyectoComponent],
   providers: [ProyectoService]

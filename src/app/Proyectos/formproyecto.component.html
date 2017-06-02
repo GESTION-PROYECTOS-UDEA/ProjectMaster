@@ -2,35 +2,44 @@
     <div class="col-md-8 col-md-offset-2">
 
         <h1>DATOS BASICOS</h1>
-       
+
         <div class="row">
-        
+
             <div class="col-md-4">
                 <label for="">Nombre del Proyecto</label>
-                <input type="text" class="form-control">
+                <input type="text" required [(ngModel)]="proyecto.nombreproyecto" class="form-control" #nameState="ngModel">
+                <div [hidden]="nameState.valid || nameState.pristine" class="alert alert-danger">
+                    Nombre del Proyecto es requerido
+                </div>
             </div>
+
+             <input type="hidden" value="admin" [(ngModel)]="proyecto.adtusuario" class="form-control">
+            <input type="hidden"  value="03-06-17" [(ngModel)]="proyecto.adtfecha" class="form-control">
 
             <div class="col-md-4">
                 <label for="">Tipo</label>
-                <select name="" id="" class="form-control">
-                    <option value="">
-                        <li>
-                            Seleccionar Tipo...
-                        </li>
-                    </option>
+                <select name="sltTipoPrj" id="sltTipoPrj" required [(ngModel)]="proyecto.tiposproyectos" class="form-control" #subjectState="ngModel">
+                    <option value="1">Investigación</option>
+                    <option value="2">Docencia</option>
+                    <option value="3">Extensión</option>
                 </select>
+                <div [hidden]="subjectState.valid || subjectState.pristine" class="alert alert-danger">
+                    Debe elegir un tipo
+                </div>
             </div>
 
             <div class="col-md-4">
                 <label for="">Modalidad</label>
-                <select name="" id="" class="form-control">
-                    <option value="">Seleccionar modalidad...</option>
+                <select name="sltModalidad" id="sltModalidad" required [(ngModel)]="proyecto.modalidades" class="form-control">
+                    <option value="1">Ude@</option>
+                    <option value="2">Regionalización</option>
+                    <option value="3">Presencial</option>
                 </select>
             </div>
 
         </div>
-        
-<!--      
+
+        <!--      
         <div class="row">
 
             <div class="col-md-4">
@@ -55,7 +64,7 @@
         </div>
 -->
         <div class="row">
- <!--           
+            <!--           
             <div class="col-md-4">
                 <label for="">Fecha creaci&oacute;n</label>
                 <input type="date" class="form-control">
@@ -63,7 +72,7 @@
 -->
             <div class="col-md-4">
                 <label for="">Fecha Inicial</label>
-                <input type="date" class="form-control">
+                <input type="date" required [(ngModel)]="proyecto.fechainicial" class="form-control">
             </div>
 
             <div class="col-md-4">
@@ -74,7 +83,7 @@
         </div>
 
         <div class="row">
- <!--           
+            <!--           
             <div class="col-md-4">
                 <label for="">Calificaci&oacute;n</label>
                 <input type="date" class="form-control" disabled>
@@ -118,9 +127,26 @@
 
         </div>
 -->
+        </div>
         <br>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        
-        
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Guardar</button>
+
+
+        <br>
+        <h2>Vista del proyecto</h2>
+        <div>
+            <label>Nombre: </label> {{proyecto.nombreproyecto}}
+        </div>
+        <div>
+            <label>Tipo: </label> {{proyecto.tiposproyectos}}
+        </div>
+        <div>
+            <label>Modalidad: </label> {{proyecto.modalidades}}
+        </div>
+        <div>
+            <label>Fecha inicial: </label> {{proyecto.fechainicial}}
+        </div>
+        <div>
+            <label>Fecha final: </label>
+        </div>
     </div>
-</div>

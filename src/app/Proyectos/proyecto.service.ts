@@ -26,13 +26,6 @@ export class ProyectoService {
       return Promise.resolve(PROYECTOS)
     }
 
-    getProyectos4(): Observable<Proyecto[]>{
-      return this.http
-      .get(`${this.proyectosUrl}/findall`, {headers: this.headers})
-      .map(res => res.json().data )
-      .catch(this.handleError);
-  }
-
   getProyectos3(): Observable<Proyecto[]>{
       return this.http
       .get(`${this.proyectosUrl}/findall`, {headers: this.headers})
@@ -53,19 +46,32 @@ export class ProyectoService {
       .data as Proyecto).catch(this.handleError);
     }
 
-    create(proyecto: Proyecto): Promise<Proyecto> {
+    /**create(proyecto: Proyecto): Promise<Proyecto> {
       return this.http
       .post(`${this.proyectosUrl}/save`, JSON.stringify({proyecto}), {headers: this.headers})
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);
     }
+    */
+
+    create(proyecto: Proyecto): Observable<Proyecto> {
+      let body = JSON.stringify(proyecto);
+      let headers = this.headers;
+      let options = new RequestOptions({ headers: headers });
+      console.log('Creeando el proyecto'+ body );
+        return this.http
+        .post(`${this.proyectosUrl}/save`, body, options)
+        .map(res => (<Proyecto>res.json().data))
+        .catch(this.handleError);
+    }
+
 
 
 }
 
 const PROYECTOS: Proyecto[]=[
-  {"idn":7,
+  {"idnproyectos":7,
   "nombreproyecto":"Pruebas2",
   "objetivogeneral":"Pruebas al crud",
   "fechainicial":"2017-04-20",
