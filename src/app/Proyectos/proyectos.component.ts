@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proyecto } from './proyecto';
 import { ProyectoService } from './proyecto.service';
 
-import { Router }   from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,26 +13,23 @@ import { Router }   from '@angular/router';
 
 
 export class ProyectosComponent implements OnInit {
-   proyectos: Proyecto[];
-   mensajeError: string; 
+  proyectos: Proyecto[];
+  mensajeError: string;
+  proyectoSeleccionado: Proyecto;
   constructor(private proyectoService: ProyectoService, private router: Router) { }
 
-    getProyectos() {
-       this.proyectoService.getProyectos3().subscribe(proyectos => (console.log(proyectos), 
-       this.proyectos = proyectos,
-       error => this.mensajeError = <any>error));
-    }
-
-    ngOnInit(): void {
-      this.getProyectos();
-    }
-  
-  /**gotoDetail(): void {
-    this.router.navigate(['/detail', id]);
+  getProyectos() {
+    this.proyectoService.getProyectos().subscribe(proyectos => this.proyectos = proyectos,
+      error => this.mensajeError = <any>error);
   }
-  */
 
- 
-  
-  
+  ngOnInit(): void {
+    this.getProyectos();
+  }
+
+  onSelect(proyecto: Proyecto): void {
+    this.proyectoSeleccionado = proyecto;
+  }
+
+
 }

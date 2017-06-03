@@ -13,13 +13,6 @@
 						<div class="col-xs-12 col-sm-4">
 							<div id="new_project" class="dataTables_filter">
 								<a class="btn btn-default" routerLink="/formproyecto" title="Nuevo Proyecto">Nuevo</a>
-								<!--
-								<label>							
-									<button type="button" class="btn btn-default" onclick="window.history.back();">
-										Nuevo Proyecto
-									</button>
-								</label>
-								-->
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-4">
@@ -52,11 +45,11 @@
 								<!--<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Tracker: activate to sort column ascending" style="width: 48px;">Tracker</th>-->
 							</tr>
 						</thead>
-						<tbody *ngFor="let proyecto of proyectos">
+						<tbody *ngFor="let proyecto of proyectos" >
 							<tr role="row" class="odd">
 								<!--<table>
 									<tr>-->
-										<td routerLink="/formproyecto" class=" details-control" ></td>
+										<td routerLink="/editproyecto/:proyectoSeleccionado.idnproyectos" class=" details-control" (click)="onSelect(proyecto)" ></td>
 										<td class="sorting_1">{{proyecto.nombreproyecto}}<br>
 											<small class="text-muted">
 												<i>Calificación: {{proyecto.calificacion}}<i></i></i>

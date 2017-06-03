@@ -1,30 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Proyecto } from './proyecto';
 import { ProyectoService } from './proyecto.service';
-
 
 @Component({
   selector: 'formproyecto',
   templateUrl: './formproyecto.component.html',
   styleUrls: ['./formproyecto.component.css']
 })
-export class FormproyectoComponent {
+export class FormproyectoComponent implements OnInit {
 
-  constructor(private proyectoService: ProyectoService, private router: Router) { 
-    
-  }
+  constructor(
+    private proyectoService: ProyectoService,
+    private router: Router,
+
+  ) { }
   proyecto: Proyecto = new Proyecto;
-
   mensajeError: string;
   submitted = false;
   active = true;
 
+  ngOnInit(): void {
+  }
+  
   onSubmit() {
-
     this.submitted = true;
-    this.proyectoService.create(this.proyecto).subscribe(proyecto => (console.log(proyecto),
+    this.proyecto.adtfecha = "2017-06-15";
+    this.proyecto.adtusuario = "Admin";
+    this.proyecto.estados = 1;
+    this.proyectoService.createdit(this.proyecto).subscribe(proyecto => (console.log(proyecto),
       this.proyecto = proyecto,
       error => this.mensajeError = <any>error));;
     this.newForm();
@@ -35,4 +40,6 @@ export class FormproyectoComponent {
     this.active = false;
     setTimeout(() => { this.active = true; });
   }
+
+
 }
