@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Proyecto } from './proyecto';
 import { ProyectoService } from './proyecto.service';
+import 'rxjs/add/operator/switchMap';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'formproyecto',
@@ -11,17 +14,19 @@ import { ProyectoService } from './proyecto.service';
 })
 export class FormproyectoComponent implements OnInit {
 
-  constructor(
+   constructor(
     private proyectoService: ProyectoService,
-    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location) { }
 
-  ) { }
-  proyecto: Proyecto = new Proyecto;
+  proyecto: Proyecto = new Proyecto();
   mensajeError: string;
   submitted = false;
   active = true;
+  idnproyecto: number;
 
   ngOnInit(): void {
+
   }
   
   onSubmit() {

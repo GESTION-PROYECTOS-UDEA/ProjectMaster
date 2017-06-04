@@ -28,13 +28,12 @@ export class ProyectoService {
     return Promise.reject(error.message || error);
   }
 
-  getProyecto(id: number): Promise<Proyecto> {
+  getProyecto(id: number): Observable<Proyecto> {
     const url = `${this.proyectosUrl}/find/${id}`;
-    return this.http.get(url).toPromise().
-      then(response => response.json()
-        .data as Proyecto).catch(this.handleError);
+    return this.http.get(url).
+      map(res => res.json())
+        .catch(this.handleError);
   }
-
 
   createdit(proyecto: Proyecto): Observable<Proyecto> {
     let body = JSON.stringify(proyecto);
@@ -43,8 +42,8 @@ export class ProyectoService {
     if (proyecto.idnproyectos) {
       console.log("Entró a editar" + proyecto);
       return this.http
-        .put(`${this.proyectosUrl}/save/$(proyecto.idnproyectos)`, body, options)
-        .map(res => (<Proyecto>res.json().data))
+      .put(`${this.proyectosUrl}/update`, body, options)
+      .map(res => (<Proyecto>res.json().data))
         .catch(this.handleError);
     } else {
       return this.http

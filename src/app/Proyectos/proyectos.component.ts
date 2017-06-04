@@ -29,6 +29,7 @@ export class ProyectosComponent implements OnInit {
 
   onSelect(proyecto: Proyecto): void {
     this.proyectoSeleccionado = proyecto;
+    this.router.navigate(['/editproyecto', this.proyectoSeleccionado.idnproyectos]);
   }
 
 
