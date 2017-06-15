@@ -42,7 +42,7 @@ export class ProyectoService {
     if (proyecto.idnproyectos) {
       console.log("Entró a editar" + proyecto);
       return this.http
-      .put(`${this.proyectosUrl}/update`, body, options)
+      .put(`${this.proyectosUrl}/edit/${proyecto.idnproyectos}`, body, options)
       .map(res => (<Proyecto>res.json().data))
         .catch(this.handleError);
     } else {

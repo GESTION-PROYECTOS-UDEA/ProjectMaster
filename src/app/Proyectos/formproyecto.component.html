@@ -1,130 +1,258 @@
 <div class="container">
-    <div class="col-md-8 col-md-offset-2">
+    <form name="myform" *ngIf="active" (ngSubmit)="onSubmit()">
+        <div class="col-md-8 col-md-offset-2">
+            <!-- jasmin jaramillo: Aca se crean las pestañas -->
+            <ul id="myTab1" class="nav nav-tabs bordered">
+                <li class="active">
+                    <a href="#s1" data-toggle="tab" aria-expanded="true">Datos Básicos</a>
+                </li>
+                <li class="">
+                    <a href="#s2" data-toggle="tab" aria-expanded="false">Objetivos</a>
+                </li>
+                <li class="">
+                    <a href="#s3" data-toggle="tab" aria-expanded="false">Actividades</a>
+                </li>
+            </ul>
+            <!-- jasmin jaramillo: Aca terminan las pestañas e inicia el contenido -->
+            <div id="myTabContent1" class="tab-content padding-10">
+                <div class="tab-pane fade active in" id="s1">
 
-        <h1>DATOS BASICOS</h1>
-        <form *ngIf="active" (ngSubmit)="onSubmit()">
-            <div class="row">
+                    <div class="row">
 
-                <div class="col-md-4">
-                    <label for="">Nombre del Proyecto</label>
-                    <input type="text" required [(ngModel)]="proyecto.nombreproyecto" name="nombreproyecto" class="form-control" #nameState="ngModel">
-                    <div [hidden]="nameState.valid || nameState.pristine" class="alert alert-danger">
-                        Nombre del Proyecto es requerido
-                    </div>
-                </div>
+                        <div class="col-md-4">
+                            <label for="">Nombre del Proyecto</label>
+                            <input type="text" required [(ngModel)]="proyecto.nombreproyecto" name="nombreproyecto" class="form-control" #nameState="ngModel">
+                            <div [hidden]="nameState.valid || nameState.pristine" class="alert alert-danger">
+                                Nombre del Proyecto es requerido
+                            </div>
+                        </div>
 
-                <div class="col-md-4">
-                    <label for="">Tipo</label>
-                    <select name="sltTipoPrj" id="sltTipoPrj" required [(ngModel)]="proyecto.tiposproyectos" class="form-control">
+                        <div class="col-md-4">
+                            <label for="">Tipo</label>
+                            <select name="sltTipoPrj" id="sltTipoPrj" required [(ngModel)]="proyecto.tiposproyectos" class="form-control">
                     <option value="1">Investigación</option>
                     <option value="2">Docencia</option>
                     <option value="3">Extensión</option>
                 </select>
-                </div>
+                        </div>
 
-                <div class="col-md-4">
-                    <label for="">Modalidad</label>
-                    <select name="sltModalidad" id="sltModalidad" required [(ngModel)]="proyecto.modalidades" class="form-control">
+                        <div class="col-md-4">
+                            <label for="">Modalidad</label>
+                            <select name="sltModalidad" id="sltModalidad" required [(ngModel)]="proyecto.modalidades" class="form-control">
                     <option value="1">Ude@</option>
                     <option value="2">Regionalización</option>
                     <option value="3">Presencial</option>
                 </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label for="">Fecha Inicial</label>
+                            <input type="date" required [(ngModel)]="proyecto.fechainicial" name="fechainicial" class="form-control">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="">Fecha final</label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="tab-pane fade" id="s2">
+                    <!-- jasmin jaramillo: Poner acá el contenido para la pestaña de objetivos. observar el id, debe coincidir con el href del titulo -->
+
+
+                    <div class="form-group">
+                        <label for="subject">
+                                        <B>Objetivo General</B>
+                                        </label>
+                        <input type="text" class="form-control" name="objetivoG">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="tabla-obj">
+                            <label>
+                                            <B>Objetivos Específicos</B>
+                                        </label>
+                        </div>
+                    </div>
+
+                    <input type="button" class="btn .btn-success" value="Adicionar" />
+
+
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID PROYECTO</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>% CONCLUIDO</th>
+                                    <th>ANOTACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let especifico of especificos">
+                                <tr>
+                                    <td>{{especifico.idn}}</td>
+                                    <td>{{especifico.descObjEspecifico}}</td>
+                                    <td>
+                                        <div class="progress progress-xs" data-progressbar-value='50'>
+                                            <div class="progress-bar">
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{especifico.anotaciones}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="s3">
+                    <!-- jasmin jaramillo: Poner acá el contenido para la pestaña de actividades. observar el id, debe coincidir con el href del titulo -->
+                    <div class="form-group">
+                        <label for="subject">NOMBRE DE LA ACTIVIDAD</label>
+                        <input type="text" class="form-control" name="actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">FECHA DE CREACION</label>
+                        <input type="text" class="form-control" name="fecha Creacion actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">FECHA DE INICIO</label>
+                        <input type="text" class="form-control" name="fecha Inicio actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">FECHA DE TERMINACION</label>
+                        <input type="text" class="form-control" name="fecha Terminacion actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">PORCENTAJE DE LA ACTIVIDAD</label>
+                        <input type="text" class="form-control" name="porcentaje actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">REVISOR ENCARGADO</label>
+                        <input type="text" class="form-control" name="revisor actividad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">FECHA ULTIMA REVISION</label>
+                        <input type="text" class="form-control" name="ultima revision">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">CALIFICACION</label>
+                        <input type="text" class="form-control" name="calificación">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <b>TRAMITE DE CANCELACION</b>
+                        <div class="checkbox">
+                            <label for="cancelacion">
+            <input type="checkbox"> ¿Quiere cancelar esta actividad?
+          </label>
+                        </div>
+                        <label for="content">JUSTIFICACION CANCELACION</label>
+                        <input type="text" class="form-control" name="justificacion">
+                    </div>
+
+                    <div class="form-group">
+                        <b>TRAMITE DE SUSPENSION</b>
+                        <div class="checkbox">
+                            <label for="suspension">
+            <input type="checkbox"> ¿Quiere suspender esta actividad?
+          </label>
+                        </div>
+                        <label for="content">JUSTIFICACION DE LA SUSPENSION</label>
+                        <input type="text" class="form-control" name="justificacion suspension">
+                    </div>
+
+                    <div class="form-group">
+                        <b>OBJETIVOS QUE ALCANZA ESTA ACTIVIDAD</b>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>DESCRIPCION</th>
+                                    <th>% CONCLUIDO</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let especifico of especificos">
+                                <tr>
+                                    <td>Descripcion objetivo 1</td>
+                                    <td>
+                                        <div class="progress progress-xs" data-progressbar-value='50'>
+                                            <div class="progress-bar">
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <b>ESTADO EN EL QUE SE ENCUENTRA LA ACTIVIDAD</b>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label for="isImportant">
+                                <input type="checkbox"> SIN INICIAR
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label for="isImportant">
+            <input type="checkbox"> EN PROCESO
+          </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label for="isImportant">
+            <input type="checkbox"> TERMINADA
+          </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label for="isImportant">
+            <input type="checkbox"> REVISADA Y CALIFICADA
+          </label>
+                        </div>
+                    </div>
+
+                    <input type="button" class="btn .btn-success" value="Adicionar" />
                 </div>
 
             </div>
 
-            <!--      
-        <div class="row">
-
-            <div class="col-md-4">
-                <label for="">Responsable</label>
-                <input type="text" class="form-control">
-            </div>
-            
-            <div class="col-md-4">
-                <label for="">Asesor</label>
-                <input type="text" class="form-control">
-            </div>
-            <div class="col-md-4">
-                <label for="">Participantes</label>
-                
-                <select name="" id="" class="form-control select2" multiple >
-                    <option value="">Persona 1</option>
-                    <option value="">Persona 2</option>
-                    <option value="">Persona 3</option>
-                </select>
-            </div>
-            
-        </div>
--->
+            <!-- gvillegas: el boton se deja por fuera para que se pueda usar sin importar la pestaña activa -->
             <div class="row">
-                <!--           
-            <div class="col-md-4">
-                <label for="">Fecha creaci&oacute;n</label>
-                <input type="date" class="form-control">
-            </div>
--->
-                <div class="col-md-4">
-                    <label for="">Fecha Inicial</label>
-                    <input type="date" required [(ngModel)]="proyecto.fechainicial" name="fechainicial" class="form-control">
-                </div>
 
-                <div class="col-md-4">
-                    <label for="">Fecha final</label>
-                    <input type="date" class="form-control" name="fecha final">
-                </div>
+                <button type="default" class="btn btn-primary" (ngclic)="goBack()">Atrás</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
 
             </div>
-
-            <div class="row">
-                <!--           
-            <div class="col-md-4">
-                <label for="">Calificaci&oacute;n</label>
-                <input type="date" class="form-control" disabled>
-            </div>
-
-            <div class="col-md-4">
-                <label for="">Estado</label>
-                <select name="" id="" class="form-control">
-                    <option value="">Seleccionar ...</option>
-                </select>
-            </div>
-
-        </div>
-        <br>
-        <div class="row">
-
-            <div class="col-md-12">
-                <label for="">Objetivo general</label>
-                <textarea class="form-control"></textarea>
-            </div>
-
         </div>
 
-        <br>
-        <div class="row">
-
-            <div class="col-md-12">
-                <label for="">Objetivos especificos</label>
-                <textarea class="form-control"></textarea>
-            </div>
-
-        </div>
-
-        <br>
-        <div class="row">
-
-            <div class="col-md-12">
-                <label for="">Reconocimientos</label>
-                <textarea class="form-control"></textarea>
-            </div>
-
-        </div>
--->
-            </div>
-            <br>
-            <button type="submit" class="btn btn-default">Guardar</button>
-        </form>
-    </div>
-
+    </form>
 </div>
