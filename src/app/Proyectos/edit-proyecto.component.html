@@ -1,0 +1,265 @@
+<div class="container">
+  <form *ngIf="active" (ngSubmit)="onSubmit()">
+    <div class="col-md-8 col-md-offset-2">
+      <div *ngIf="proyecto">
+
+        <div class="col-md-8 col-md-offset-2">
+          <!-- jasmin jaramillo: Aca se crean las pestañas -->
+          <ul id="myTab1" class="nav nav-tabs bordered">
+            <li class="active">
+              <a href="#s1" data-toggle="tab" aria-expanded="true">Datos Básicos</a>
+            </li>
+            <li class="">
+              <a href="#s2" data-toggle="tab" aria-expanded="false">Objetivos</a>
+            </li>
+            <li class="">
+              <a href="#s3" data-toggle="tab" aria-expanded="false">Actividades</a>
+            </li>
+          </ul>
+          <!-- jasmin jaramillo: Aca terminan las pestañas e inicia el contenido -->
+          <div id="myTabContent1" class="tab-content padding-10">
+            <div class="tab-pane fade active in" id="s1">
+
+              <div class="row">
+
+                <div class="col-md-4">
+                  <label for="">Nombre del Proyecto</label>
+                  <input type="text" required [(ngModel)]="proyecto.nombreproyecto" name="nombreproyecto" class="form-control" #nameState="ngModel">
+                  <div [hidden]="nameState.valid || nameState.pristine" class="alert alert-danger">
+                    Nombre del Proyecto es requerido
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="">Tipo</label>
+                  <select name="sltTipoPrj" id="sltTipoPrj" required [(ngModel)]="proyecto.tiposproyectos" class="form-control">
+                    <option value="1">Investigación</option>
+                    <option value="2">Docencia</option>
+                    <option value="3">Extensión</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="">Modalidad</label>
+                  <select name="sltModalidad" id="sltModalidad" required [(ngModel)]="proyecto.modalidades" class="form-control">
+                    <option value="1">Ude@</option>
+                    <option value="2">Regionalización</option>
+                    <option value="3">Presencial</option>
+                </select>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-4">
+                  <label for="">Fecha Inicial</label>
+                  <input type="date" required [(ngModel)]="proyecto.fechainicial" name="fechainicial" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label for="">Fecha final</label>
+                  <input type="date" class="form-control">
+                </div>
+
+              </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="s2">
+              <!-- jasmin jaramillo: Poner acá el contenido para la pestaña de objetivos. observar el id, debe coincidir con el href del titulo -->
+
+
+              <div class="form-group">
+                <label for="subject">
+                          <B>Objetivo General</B>
+                  </label>
+                <input type="text" class="form-control">
+              </div>
+
+
+
+              <div class="form-group">
+                <div class="tabla-obj">
+                  <label>
+                         <B>Objetivos Específicos</B>
+                    </label>
+                </div>
+              </div>
+
+              <input type="button" class="btn .btn-success" value="Adicionar" />
+
+
+              <div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID PROYECTO</th>
+                      <th>DESCRIPCION</th>
+                      <th>% CONCLUIDO</th>
+                      <th>ANOTACIONES</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let especifico of especificos">
+                    <tr>
+                      <td>{{especifico.idn}}</td>
+                      <td>{{especifico.descObjEspecifico}}</td>
+                      <td>
+                        <div class="progress progress-xs" data-progressbar-value='50'>
+                          <div class="progress-bar">
+
+                          </div>
+                        </div>
+                      </td>
+                      <td>{{especifico.anotaciones}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="s3">
+              <!-- jasmin jaramillo: Poner acá el contenido para la pestaña de actividades. observar el id, debe coincidir con el href del titulo -->
+              <div class="form-group">
+                <label for="subject">NOMBRE DE LA ACTIVIDAD</label>
+                <input type="text" class="form-control" >
+              </div>
+
+              <div class="form-group">
+                <label for="content">FECHA DE CREACION</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">FECHA DE INICIO</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">FECHA DE TERMINACION</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">PORCENTAJE DE LA ACTIVIDAD</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">REVISOR ENCARGADO</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">FECHA ULTIMA REVISION</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="content">CALIFICACION</label>
+                <input type="text" class="form-control">
+              </div>
+
+
+
+              <div class="form-group">
+                <b>TRAMITE DE CANCELACION</b>
+                <div class="checkbox">
+                  <label for="cancelacion">
+            <input type="checkbox"> ¿Quiere cancelar esta actividad?
+          </label>
+                </div>
+                <label for="content">JUSTIFICACION CANCELACION</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <b>TRAMITE DE SUSPENSION</b>
+                <div class="checkbox">
+                  <label for="suspension">
+            <input type="checkbox"> ¿Quiere suspender esta actividad?
+          </label>
+                </div>
+                <label for="content">JUSTIFICACION DE LA SUSPENSION</label>
+                <input type="text" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <b>OBJETIVOS QUE ALCANZA ESTA ACTIVIDAD</b>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>DESCRIPCION</th>
+                      <th>% CONCLUIDO</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let especifico of especificos">
+                    <tr>
+                      <td>Descripcion objetivo 1</td>
+                      <td>
+                        <div class="progress progress-xs" data-progressbar-value='50'>
+                          <div class="progress-bar">
+
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <b>ESTADO EN EL QUE SE ENCUENTRA LA ACTIVIDAD</b>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label for="isImportant">
+                                <input type="checkbox"> SIN INICIAR
+                            </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label for="isImportant">
+            <input type="checkbox"> EN PROCESO
+          </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label for="isImportant">
+            <input type="checkbox"> TERMINADA
+          </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox">
+                  <label for="isImportant">
+            <input type="checkbox"> REVISADA Y CALIFICADA
+          </label>
+                </div>
+              </div>
+
+              <input type="button" class="btn .btn-success" value="Adicionar" />
+            </div>
+
+          </div>
+
+          <!-- gvillegas: el boton se deja por fuera para que se pueda usar sin importar la pestaña activa -->
+          <div class="row">
+
+            <button type="default" class="btn btn-primary" (ngclic)="goBack()">Atrás</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+
+          </div>
+        
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
