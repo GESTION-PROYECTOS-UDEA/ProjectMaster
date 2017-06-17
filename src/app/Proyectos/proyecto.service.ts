@@ -40,7 +40,6 @@ export class ProyectoService {
     let headers = this.headers;
     let options = new RequestOptions({ headers: headers });
     if (proyecto.idnproyectos) {
-      console.log("Entró a editar" + proyecto);
       return this.http
       .put(`${this.proyectosUrl}/edit/${proyecto.idnproyectos}`, body, options)
       .map(res => (<Proyecto>res.json().data))

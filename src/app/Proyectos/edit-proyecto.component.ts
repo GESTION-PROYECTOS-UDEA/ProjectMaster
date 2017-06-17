@@ -27,9 +27,9 @@ export class EditProyectoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-      .switchMap((params: Params) => (this.idnproyecto = +params['idnproyectos'], console.log(this.idnproyecto), 
+      .switchMap((params: Params) => (this.idnproyecto = +params['idnproyectos'], 
       this.proyectoService.getProyecto(this.idnproyecto)))
-      .subscribe(proyecto => (console.log(proyecto), this.proyecto = proyecto));
+      .subscribe(proyecto => this.proyecto = proyecto);
   }
   onSubmit() {
     this.submitted = true;
@@ -46,6 +46,7 @@ export class EditProyectoComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/proyectos']);
+    window.location.reload();
   }
 
 }

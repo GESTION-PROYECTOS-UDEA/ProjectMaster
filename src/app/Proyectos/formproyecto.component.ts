@@ -48,6 +48,7 @@ export class FormproyectoComponent implements OnInit {
 
  goBack(): void {
     this.router.navigate(['/proyectos']);
+    window.location.reload();
   }
 
 
